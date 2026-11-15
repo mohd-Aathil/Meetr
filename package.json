@@ -1,0 +1,55 @@
+{
+  "name": "meetr",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lightweight real-time desktop meeting copilot",
+  "author": "Your Name",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "concurrently -k -n vite,electron -c cyan,magenta \"vite\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "dist": "vite build && electron-builder --win"
+  },
+  "dependencies": {
+    "@deepgram/sdk": "^5.15.0",
+    "dotenv": "^18.0.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "electron": "^44.9.0",
+    "electron-builder": "^25.1.8",
+    "tailwindcss": "^4.0.0",
+    "vite": "^6.0.0",
+    "wait-on": "^8.0.2"
+  },
+  "build": {
+    "appId": "com.meetr.app",
+    "productName": "Meetr AI",
+    "directories": {
+      "output": "dist-app"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
